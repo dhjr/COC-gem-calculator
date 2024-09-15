@@ -4,7 +4,7 @@ P1: Currently available number of gems(Bought thru in-app purchases, achievement
 P2: Gem mine level.(assuming player regularly collects gems)
 P3: No of obstacles in home/builder base.
 P4: Gem box
-P5: clan games(Clan Games usually run from the 22nd to 28th of each month. )
+P5: clan games(Clan Games usually run from the 22nd to 28th of each month.(give three options to select from: 20 , 50 and 100 gems)
 P6: clock tower
 
 P1
@@ -13,18 +13,19 @@ let numOfGems;
 P2
 
 GEM MINE
+*take upto 4 decimal places , round it up to nearest 2 decimal number
 Gem mine level  time for 1 gem  production per day	prod per day with clock tower once a day
-Ruin/Upgrading	0 gems		0		
-Level 1	-	11h 6m 40s 	2.16
-Level 2	-	10h  		2.40
-Level 3 -	9h 5m 27s	2.64
-Level 4 - 	8h 20m		2.88
-Level 5 -	7h 41m 32s	3.12
-Level 6 -	7h 8m 34s	3.36
-Level 7 - 	6h 15m		3.84
-Level 8 -	5h 33m 20s	4.32
-Level 9 -	5h		4.80
-Level 10 -	4h 45m 43s	5.04
+Ruin/Upgrading	infinite	0				
+Level 1	-	40000s	 	2.16
+Level 2	-	36000s 		2.40
+Level 3 -	32727s		2.64
+Level 4 - 	30000s		2.88
+Level 5 -	27692s		3.12
+Level 6 -	25714s		3.36
+Level 7 - 	22500s		3.84
+Level 8 -	20000s		4.32
+Level 9 -	18000s		4.80
+Level 10 -	17143s		5.04
 
 OBSTACLES
 HOME BASE & builder base(approximation)
@@ -45,8 +46,22 @@ So provide the best case time wherein each month 170 gems are obtained by the us
 
 
 Clock tower
-can make resource production 10x faster.
+can make resource production 10x faster.for fixed amount of time.
 
-isActivated: yes/no
+(86400+net time gained by clock tower)/time taken to produce 1 gem = prod by gem mine with clock tower once in a day
 
-level	
+Level	Boost duration	Time gained per boost	Net time gained	Gem Mine boosted/day
+1		14m		2h 6m			6720s		2.32
+2		16m		2h 24m			7680s		2.35
+3		18m		2h 42m			8640s		2.37
+4		20m		3h			9600s		2.40
+5		22m		3h18m			10560s		2.42
+6		24m		3h36m			11520s		2.45
+7		26m		3h54m			12480s		2.47
+8		28m		4h12m			13440s		2.49
+9		30m		4h30m			14400s		2.52
+10		32m		4h48m			15360s		2.54
+
+
+Total production per day: gems from gem mine&clock tower boost once a day+ gems from obstacles+ gems from gem mine+ gems from clan game
+divide the total production per day with the required no of gems , it will give the no of days required ,convert that into days hours minutes and seconds.
