@@ -182,7 +182,7 @@ function mainFunction()
     let avlGems = val[1];
     let resultTag = document.getElementById('timeTaken');
     
-    if(reqdGems <= avlGems)
+    if(reqdGems <= avlGems) 
         {
             resultTag.innerHTML = ("Time Taken:0 days");   
         }
