@@ -3,12 +3,12 @@ IDEA: Find the number of days it will take to meet the number of gems required b
 P1: Currently available number of gems(Bought thru in-app purchases, achievements or other rewards)
 P2: Gem mine level.(assuming player regularly collects gems)
 P3: No of obstacles in home/builder base.
-P4: Gem box
-P5: clan games(Clan Games usually run from the 22nd to 28th of each month.(give three options to select from: 20 , 50 and 100 gems)
+P4: Gem box(optional factor)
+P5: clan games(Clan Games usually run from the 22nd to 28th of each month.(give three options to select from: 20 , 50 and 100 gems)(optional)
 P6: clock tower
 
 P1
-let numOfGems;
+numOFGems
 
 P2
 
@@ -65,3 +65,13 @@ Level	Boost duration	Time gained per boost	Net time gained	Gem Mine boosted/day
 
 Total production per day: gems from gem mine&clock tower boost once a day+ gems from obstacles+ gems from gem mine+ gems from clan game
 divide the total production per day with the required no of gems , it will give the no of days required ,convert that into days hours minutes and seconds.
+
+P4 and P5
+provide option only if time taken > 28 days
+gem box frequency: no of gem boxes user assumes to get per month
+options: 1 , 2 or 3
+
+
+avg clan game tier: what tier does the player usually complete upto in clan games(assuming he chooses gems as rewards)
+options: 0 to 7 (0 indicating dont know or dont consider clan games)
+

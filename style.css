@@ -76,7 +76,10 @@ body{
 
 #timeTaken
 {
+    display: block;
+    margin: 1.25em;
     font-family:'Clash font';
+    font-size: large;
     color: rgb(255, 255, 255);
 }
 

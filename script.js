@@ -77,7 +77,7 @@ function inputValues()
             
         }
         
-        if(gemBoxFreq.length==0||Number(gemBoxFreq)>3||Number(gemBoxFreq)<1)
+        if(gemBoxFreq.length==0||Number(gemBoxFreq)>3||Number(gemBoxFreq)<0)
             {
                 error = document.getElementById('err5');
                 error.style.visibility = 'visible';
