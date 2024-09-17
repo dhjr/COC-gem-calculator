@@ -144,6 +144,7 @@ function gemBox()
 {
     let gemBoxFreq = values[5];
     let netGemsPerMonth = Number(gemBoxFreq) *25;
+    return gemBoxFreq;
 
 }
 
@@ -220,7 +221,7 @@ function mainFunction()
     let avlGems = val[1];
     let currentGem = 0;
     let resultTag = document.getElementById('timeTaken');
-    let ClearHbObstacle = false;
+    let ClearHbObstacle = true;
     let ClearBbObstacle = false;
     
     if(reqdGems <= avlGems) 
@@ -229,30 +230,23 @@ function mainFunction()
         }
     else
         {
-            while(currentGem<=reqdGems)
-            {
-                currentGem+=avlGems;
 
-                let netReqdGems = reqdGems - avlGems;
-                let NetProductionPerDay = gemMineAndClockTower(val);
-                reqdTime = netReqdGems/NetProductionPerDay;
-                reqdTime = parseFloat(reqdTime.toFixed(4));            //to round required time to 4 decimal places.
-                
+            let homeBaseObs = document.getElementById('homeBaseObstacleToggle');
+            homeBaseObs.addEventListener('click' , function(){NetProductionPerDay+=6});
+            let BuilderBaseObs = document.getElementById('builderBaseObstacleToggle');
+            BuilderBaseObs.addEventListener('change' ,function(){NetProductionPerDay+=6});
 
-                let homeBaseObs = document.getElementById('switch1');
-                homeBaseObs.addEventListener('toggle' , ClearHbObstacle = true);
-            
-                let BuilderBaseObs = document.getElementById('switch2');
-                BuilderBaseObs.addEventListener('toggle' , ClearBbObstacle=true);
-                let result = displayTime(reqdTime);
-                resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;
+            let netReqdGems = reqdGems - avlGems;
+            let NetProductionPerDay = gemMineAndClockTower(val);
+
+
+            reqdTime = netReqdGems/NetProductionPerDay;
+            reqdTime = parseFloat(reqdTime.toFixed(4));            //to round required time to 4 decimal places.
+            let result = displayTime(reqdTime);
+            resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;
            
             }
     }
-}
-
-    
-
 
 
 document.getElementById('calcBtn').addEventListener('click',mainFunction);
