@@ -1,18 +1,18 @@
 function inputValues()
 {
-    let values = [];
-    let reqdNumGems = document.getElementById('reqdNumOfGems').value;
-    let avlNumGems= document.getElementById('avlNumOfGems').value;
-    let gemMineLvl = document.getElementById('gemMineLevel').value;
-    let clockTowerLvl = document.getElementById('clockTowerLevel').value;
-    let clanGameTier = document.getElementById('clanGameTier').value;
-    let gemBoxFreq = document.getElementById('gemBoxFreq').value;
-    let error;
-    
-    if(reqdNumGems.length==0)
-    {
-        error = document.getElementById('err0');
-        error.style.visibility = 'visible';
+        let values = [];
+        let reqdNumGems = document.getElementById('reqdNumOfGems').value;
+        let avlNumGems= document.getElementById('avlNumOfGems').value;
+        let gemMineLvl = document.getElementById('gemMineLevel').value;
+        let clockTowerLvl = document.getElementById('clockTowerLevel').value;
+        let clanGameTier = document.getElementById('clanGameTier').value;
+        let gemBoxFreq = document.getElementById('gemBoxFreq').value;
+        let error;
+        
+        if(reqdNumGems.length==0)
+            {
+                error = document.getElementById('err0');
+                error.style.visibility = 'visible';
     }
     else
     {
@@ -20,40 +20,40 @@ function inputValues()
         error.style.visibility='hidden'
         values[0] = reqdNumGems;
     }
-
-
+    
+    
     if(avlNumGems.length==0)
-    {
-        error = document.getElementById('err1');
-        error.style.visibility = 'visible';
-    }
-    else
-    {
-        error = document.getElementById('err1');
-        error.style.visibility = 'hidden';
-        values[1] = avlNumGems;
-    }
-
-
-    if(gemMineLvl.length==0||Number(gemMineLvl)>10||Number(gemMineLvl)<0)
-    {
-        error = document.getElementById('err2');
-        error.style.visibility = 'visible';
-
-    }
-    else
-    {
-        error = document.getElementById('err2');
-        error.style.visibility = 'hidden';
-        values[2]=gemMineLvl;
-    }
-
-
-    if(clockTowerLvl.length==0||Number(clockTowerLvl)>10||Number(clockTowerLvl)<0)
-    {
+        {
+            error = document.getElementById('err1');
+            error.style.visibility = 'visible';
+        }
+        else
+        {
+            error = document.getElementById('err1');
+            error.style.visibility = 'hidden';
+            values[1] = avlNumGems;
+        }
+        
+        
+        if(gemMineLvl.length==0||Number(gemMineLvl)>10||Number(gemMineLvl)<0)
+            {
+                error = document.getElementById('err2');
+                error.style.visibility = 'visible';
+                
+            }
+            else
+            {
+                error = document.getElementById('err2');
+                error.style.visibility = 'hidden';
+                values[2]=gemMineLvl;
+            }
+            
+            
+            if(clockTowerLvl.length==0||Number(clockTowerLvl)>10||Number(clockTowerLvl)<0)
+                {
         error = document.getElementById('err3');
         error.style.visibility = 'visible';
-
+        
     }
     else
     {
@@ -62,44 +62,46 @@ function inputValues()
         values[3]=clockTowerLvl;
     }
     
-
+    
     if(clanGameTier.length==0||Number(clanGameTier)>7||Number(clanGameTier)<0)
-    {
-        error = document.getElementById('err4');
-        error.style.visibility = 'visible';
-        
-    }
-    else
-    {
-        error = document.getElementById('err4');
-        error.style.visibility = 'hidden';
-        values[4]=clanGameTier;
-
-    }
-
-    if(gemBoxFreq.length==0||Number(gemBoxFreq)>10||Number(gemBoxFreq)<0)
         {
-            error = document.getElementById('err5');
+            error = document.getElementById('err4');
             error.style.visibility = 'visible';
             
         }
         else
         {
-            error = document.getElementById('err5');
+            error = document.getElementById('err4');
             error.style.visibility = 'hidden';
-            values[5]=gemBoxFreq;
-            console.log(values);
-            return values;
+            values[4]=clanGameTier;
+            
         }
-
-}
-
-
-
-
-function gemMineAndClockTower(values)
+        
+        if(gemBoxFreq.length==0||Number(gemBoxFreq)>3||Number(gemBoxFreq)<1)
+            {
+                error = document.getElementById('err5');
+                error.style.visibility = 'visible';
+                
+            }
+            else
+            {
+                error = document.getElementById('err5');
+                error.style.visibility = 'hidden';
+                values[5]=gemBoxFreq;
+                console.log(values);
+                return values;
+                
+            }
+            
+        }
+    
+        
+        
+        
+        
+function gemMineAndClockTower(val)
 {
-let gemMineLvl = values[2];
+let gemMineLvl = val[2];
 
 const gemMinePerDayProduction = {0:Infinity,         //time taken to produce 1 gem for each level of the gem mine
                     1:40000,
@@ -116,7 +118,7 @@ const gemMinePerDayProduction = {0:Infinity,         //time taken to produce 1 g
 
 
 
-let clockTowerLvl = values[3];
+let clockTowerLvl = val[3];
 
 const netTimeGainedPerDay = {0:0,       //Indicated how much actual boost is provided by the clock tower in addition to 24 hours of a day for each clock tower level.
                     1:6720,
@@ -144,32 +146,54 @@ function gemBox()
 {
     let gemBoxFreq = values[5];
     let netGemsPerMonth = Number(gemBoxFreq) *25;
-    return gemBoxFreq;
+    return netGemsPerMonth;
 
 }
 
 
 
 
-function clanGames()
+// function clanGames()
+// {
+//     const d = newDate();
+//     let date = d.getDate();
+//     let clanGameTier = values[4];
+//     let clanGameAvailable = false;
+//     if (date>=22 &&date<=28)
+
+//     if (clanGameTier>0 && clanGameTier<=2)
+//     {
+//         gemsPerDay = 20/30;
+//     }
+//     else if(clanGameTier>2&&clanGameTier<6)
+//     {
+//         gemsPerDay = 50/30;
+//     }
+
+// }
+
+
+function obstacles()
 {
-    const d = newDate();
-    let date = d.getDate();
-    let clanGameTier = values[4];
-    let clanGameAvailable = false;
-    if (date>=22 &&date<=28)
 
-    if (clanGameTier>0 && clanGameTier<=2)
-    {
-        gemsPerDay = 20/30;
-    }
-    else if(clanGameTier>2&&clanGameTier<6)
-    {
-        gemsPerDay = 50/30;
-    }
+    let obstacleNetProdPerDay =0;
+    let homeBaseObs = document.getElementById('homeBaseObstacleToggle');
+    let BuilderBaseObs = document.getElementById('builderBaseObstacleToggle');
+
+        if(homeBaseObs.checked)
+            {
+                obstacleNetProdPerDay+=6;
+            }
+
+                            
+        if(BuilderBaseObs.checked)
+            {
+                obstacleNetProdPerDay +=6;
+            }
+
+    return obstacleNetProdPerDay;
 
 }
-
 
 
 
@@ -199,18 +223,6 @@ function displayTime(time)
 }
 
 
-function homeBase()
-{
-    avgHbGemPerDay = 6;       //2*3 obstacles per day
-    return avgHbGemPerDay;
-}
-function builderBase()
-{
-    avgBbGemPerDay = 6;       //2*3 obstacles per day
-    return avgBbGemPerDay; 
-}
-
-
 
 
 function mainFunction()
@@ -219,10 +231,12 @@ function mainFunction()
     let reqdTime = 0;
     let reqdGems = val[0];
     let avlGems = val[1];
-    let currentGem = 0;
+
+
     let resultTag = document.getElementById('timeTaken');
-    let ClearHbObstacle = true;
-    let ClearBbObstacle = false;
+
+
+
     
     if(reqdGems <= avlGems) 
         {
@@ -231,14 +245,10 @@ function mainFunction()
     else
         {
 
-            let homeBaseObs = document.getElementById('homeBaseObstacleToggle');
-            homeBaseObs.addEventListener('click' , function(){NetProductionPerDay+=6});
-            let BuilderBaseObs = document.getElementById('builderBaseObstacleToggle');
-            BuilderBaseObs.addEventListener('change' ,function(){NetProductionPerDay+=6});
-
+            
             let netReqdGems = reqdGems - avlGems;
-            let NetProductionPerDay = gemMineAndClockTower(val);
-
+            let NetProductionPerDay = gemMineAndClockTower(val) + obstacles();
+            console.log("Net prod per day: "+NetProductionPerDay);
 
             reqdTime = netReqdGems/NetProductionPerDay;
             reqdTime = parseFloat(reqdTime.toFixed(4));            //to round required time to 4 decimal places.
@@ -246,7 +256,8 @@ function mainFunction()
             resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;
            
             }
-    }
+}
+
 
 
 document.getElementById('calcBtn').addEventListener('click',mainFunction);
