@@ -6,6 +6,7 @@ function inputValues()
     let gemMineLvl = document.getElementById('gemMineLevel').value;
     let clockTowerLvl = document.getElementById('clockTowerLevel').value;
     let clanGameTier = document.getElementById('clanGameTier').value;
+    let gemBoxFreq = document.getElementById('gemBoxFreq').value;
     let error;
     
     if(reqdNumGems.length==0)
@@ -73,10 +74,24 @@ function inputValues()
         error = document.getElementById('err4');
         error.style.visibility = 'hidden';
         values[4]=clanGameTier;
-        console.log(values);
+
     }
 
-    return values;
+    if(gemBoxFreq.length==0||Number(gemBoxFreq)>10||Number(gemBoxFreq)<0)
+        {
+            error = document.getElementById('err5');
+            error.style.visibility = 'visible';
+            
+        }
+        else
+        {
+            error = document.getElementById('err5');
+            error.style.visibility = 'hidden';
+            values[5]=gemBoxFreq;
+            console.log(values);
+            return values;
+        }
+
 }
 
 
@@ -123,11 +138,16 @@ return cgmProductionPerDay;
 
 
 
+
+
 function gemBox()
 {
-    let gbProdPerDay = 50/30;            //average of 2 gem boxes(50gems) per month(30days)
-    return gbProdPerDay;
+    let gemBoxFreq = values[5];
+    let netGemsPerMonth = Number(gemBoxFreq) *25;
+
 }
+
+
 
 
 function clanGames()
@@ -148,6 +168,9 @@ function clanGames()
     }
 
 }
+
+
+
 
 function displayTime(time)
 {
@@ -174,13 +197,31 @@ function displayTime(time)
     return [days,hours,minutes,seconds];
 }
 
+
+function homeBase()
+{
+    avgHbGemPerDay = 6;       //2*3 obstacles per day
+    return avgHbGemPerDay;
+}
+function builderBase()
+{
+    avgBbGemPerDay = 6;       //2*3 obstacles per day
+    return avgBbGemPerDay; 
+}
+
+
+
+
 function mainFunction()
 {
     let val = inputValues();
     let reqdTime = 0;
     let reqdGems = val[0];
     let avlGems = val[1];
+    let currentGem = 0;
     let resultTag = document.getElementById('timeTaken');
+    let ClearHbObstacle = false;
+    let ClearBbObstacle = false;
     
     if(reqdGems <= avlGems) 
         {
@@ -188,18 +229,31 @@ function mainFunction()
         }
     else
         {
-            let netReqdGems = reqdGems - avlGems;
-            let gcNetProductionPerDay = gemMineAndClockTower(val);
-            reqdTime = netReqdGems/gcNetProductionPerDay;
-            reqdTime = parseFloat(reqdTime.toFixed(4));            //to round required time to 4 decimal places.
+            while(currentGem<=reqdGems)
+            {
+                currentGem+=avlGems;
 
-            let result = displayTime(reqdTime);
-            resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;
-       
+                let netReqdGems = reqdGems - avlGems;
+                let NetProductionPerDay = gemMineAndClockTower(val);
+                reqdTime = netReqdGems/NetProductionPerDay;
+                reqdTime = parseFloat(reqdTime.toFixed(4));            //to round required time to 4 decimal places.
+                
+
+                let homeBaseObs = document.getElementById('switch1');
+                homeBaseObs.addEventListener('toggle' , ClearHbObstacle = true);
+            
+                let BuilderBaseObs = document.getElementById('switch2');
+                BuilderBaseObs.addEventListener('toggle' , ClearBbObstacle=true);
+                let result = displayTime(reqdTime);
+                resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;
+           
+            }
     }
 }
 
     
+
+
 
 document.getElementById('calcBtn').addEventListener('click',mainFunction);
 

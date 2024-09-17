@@ -33,12 +33,47 @@
             <input type="number" id ="clanGameTier" min="0" max="7" placeholder="between 0 and 7">
             <span class ='err' id="err4">Invalid Number</span><br>
 
+            <label for="gemBoxFreq" class="parameter">Gem Box frequency per month</label>
+            <input type="number" id ="gemBoxFreq" min="0" max="10" placeholder="between 0 and 10">
+            <span class ='err' id="err5">Invalid Number</span><br>
+            
+        
+
+        <div class = 'switch'>
+
+            <div id="switch1">
+
+                <p class="switchText">Do you clear home base<br> obstacles regularly?</p>
+                <div class = 'toggleSwitch' id="homeBaseObstacleToggle">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>  
+                </div>
+
+            </div>
+            
+            <div id="switch2">
+
+                <p class="switchText">Do you clear builder base<br>obstacles regularly?</p>
+                <div class = 'toggleSwitch'  id="builderBaseObstacleToggle">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+            </div>
+                
+        </div>
+            
             <button class='parameter' id="calcBtn">Calculate</button>
+        
         </div>
     </div>
 
     <div>
-        <span id="timeTaken">Time Taken:</span>
+        <span id="timeTaken">Time Taken</span>
     </div>
     <script src="script.js"></script>
 </body>
