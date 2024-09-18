@@ -5,32 +5,33 @@ function inputValues()
         let avlNumGems= document.getElementById('avlNumOfGems').value;
         let gemMineLvl = document.getElementById('gemMineLevel').value;
         let clockTowerLvl = document.getElementById('clockTowerLevel').value;
-        let clanGameTier = document.getElementById('clanGameTier').value;
         let error;
         
-    if(reqdNumGems.length==0)
+    if(reqdNumGems.length==0||reqdNumGems.length>10)
     {
         error = document.getElementById('err0');
         error.style.visibility = 'visible';
+        values[0]=-1;
     }
     else
     {
         error = document.getElementById('err0');
         error.style.visibility='hidden'
-        values[0] = reqdNumGems;
+        values[0] = Number(reqdNumGems);
     }
     
     
-    if(avlNumGems.length==0)
+    if(avlNumGems.length==0||avlNumGems.length>10)
     {
         error = document.getElementById('err1');
         error.style.visibility = 'visible';
+        values[1]=-1;
     }
     else
     {
         error = document.getElementById('err1');
         error.style.visibility = 'hidden';
-        values[1] = avlNumGems;
+        values[1] = Number(avlNumGems);
     }
 
     
@@ -38,13 +39,14 @@ function inputValues()
     {
         error = document.getElementById('err2');
         error.style.visibility = 'visible';
+        values[2]=-1;
         
     }
     else
     {
         error = document.getElementById('err2');
         error.style.visibility = 'hidden';
-        values[2]=gemMineLvl;
+        values[2]=Number(gemMineLvl);
     }
     
     
@@ -52,17 +54,18 @@ function inputValues()
     {
         error = document.getElementById('err3');
         error.style.visibility = 'visible';
+        values[3]=-1;
         
     }
     else
     {
         error = document.getElementById('err3');
         error.style.visibility = 'hidden';
-        values[3]=clockTowerLvl;
-        console.log(values);
-        return values;
+        values[3]=Number(clockTowerLvl);
     }
     
+
+    return values;
     
 }
     
@@ -103,7 +106,7 @@ const netTimeGainedPerDay = {0:0,       //Indicated how much actual boost is pro
                 }
 
 let cgmProductionPerDay = (86400+netTimeGainedPerDay[clockTowerLvl])/gemMinePerDayProduction[gemMineLvl];       // total production by the gemMine with clock tower boost once a day
-console.log("Net gem mine production per day:"+cgmProductionPerDay);
+//console.log("Net gem mine production per day:"+cgmProductionPerDay);
 return cgmProductionPerDay;
 }
 
@@ -112,28 +115,33 @@ return cgmProductionPerDay;
 function gemBoxCounter(values)
 {
     let gemBox = document.getElementById('gemBox');
-    let reqdGems = Number(values[0]);
-    let avlGems = Number(values[1]);
+    console.log(values);
+    let reqdGems = values[0];
+    let avlGems = values[1];
     let count =0;
-    let newAvlGems = avlGems+25;
-    console.log(newAvlGems)
+    let newAvlGems = avlGems;
     let resultTag = document.getElementById('timeTakenText2');
-    
+
+
     function newTime()
     {
-        count++;
-        document.getElementById('counter').innerHTML=`x${count}`;
+        newAvlGems +=25;
+        console.log(newAvlGems)
+
         if(newAvlGems>=reqdGems)
-            {
-                resultTag.innerHTML = `Time Taken:0 days`;
-                gemBox.removeEventListener('click' , newTime);
-            }
+        {
+            count++;
+            document.getElementById('counter').innerHTML=`x${count}`;
+            resultTag.innerHTML = `Time Taken:0 days`;
+            gemBox.removeEventListener('click' , newTime);
+        }
         else
-            {
-                let reqdTime =reqdTimeCalculate(values , reqdGems , newAvlGems);
-                let result = obtainTime(reqdTime);
-                resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;  
-                newAvlGems +=25;
+        {
+            count++;
+            document.getElementById('counter').innerHTML=`x${count}`;
+            let reqdTime =reqdTimeCalculate(values, reqdGems, newAvlGems);
+            let result = obtainTime(reqdTime);
+            resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;  
         }
     }
 
@@ -160,11 +168,11 @@ function obstacles()
     return obstacleNetProdPerDay;
 }
 
-function reqdTimeCalculate(values , reqdGems , avlGems)
+function reqdTimeCalculate(values ,reqdGems , avlGems)
 {
-    let netReqdGems = reqdGems - avlGems;
+    let netReqdGems = (Number(reqdGems)) - (Number(avlGems));
     let NetProductionPerDay = gemMineAndClockTower(values) + obstacles();
-    console.log("Net prod per day: "+NetProductionPerDay);
+    //console.log("Net prod per day: "+NetProductionPerDay);
 
     let reqdTime = netReqdGems/NetProductionPerDay;             //everything related to obtaining and displaying time taken.
     reqdTime = parseFloat(reqdTime.toFixed(4));                 //to round required time to 4 decimal places.
@@ -197,26 +205,55 @@ function obtainTime(time)
     return [days,hours,minutes,seconds];
 }
 
+function checkType(arr)
+{
+    for(let i=0;i<(arr.length);i++)
+    {
+        if (arr[i]===-1)
+        {
+            return false;
+        }
+    }
+    return true;
+}
 
 function mainFunction()
 {
     let val = inputValues();
-    let reqdGems = val[0];
-    let avlGems = val[1];
     let resultTag = document.getElementById('timeTakenText1');
-    
-    if(reqdGems <= avlGems) 
-        {
-            resultTag.innerHTML = ("Time Taken:0 days");   
-        }
-    else
-        {
-            let reqdTime = reqdTimeCalculate(val ,reqdGems , avlGems);
-            let result = obtainTime(reqdTime);
-            resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;
-            gemBoxCounter(val);
+    if(checkType(val))
+    {
+        let reqdGems = Number(val[0]);
+        let avlGems = Number(val[1]);
+        document.getElementById('counter').innerHTML=`x0`;
+        document.getElementById('timeTakenText2').innerHTML = 'Time Taken:';
+        
+        let elements = document.querySelectorAll('.timeTaken');
+        elements.forEach(function(element) {
+            element.style.visibility = 'visible';
+        });
+        // function pageSc
+        // window.scrollBy(0,60); // horizontal and vertical scroll increments
+        // scrolldelay = setTimeout('pageScroll()',100);
+
+
+        if(reqdGems <= avlGems) 
+            {
+                resultTag.innerHTML = ("Time Taken:0 days");   
+                document.getElementById('timeTakenWithGb').style.visibility = 'hidden';
             }
-}
+            else
+            {
+                let reqdTime = reqdTimeCalculate(val, reqdGems , avlGems);
+                let result = obtainTime(reqdTime);
+                resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;
+                gemBoxCounter(val);
+            }
+    }
+    else{
+        resultTag.innerHTML = 'Time Taken: ';
+    }
+} 
 
 
 

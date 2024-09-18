@@ -10,6 +10,7 @@
 }
 
 
+
 body{
     background-image: url(./resource/background.jpg);
     background-attachment: fixed;
@@ -67,10 +68,17 @@ body{
     height: 3rem;
     font-family: 'Clash font';
     font-size: medium;
-
-    background-color: rgb(251, 217, 0); 
+    background-color: rgb(255, 179, 3); 
+    border: 4px solid rgb(134, 96, 0);
+    border-radius: 20px;
 }
 
+#calcBtn:active
+{
+
+  scale: 0.95;
+
+}
 
 
 .switch
@@ -181,8 +189,11 @@ input:checked + .slider:before {
 
 .timeTaken
 {
+    visibility:hidden;
+    height: 5em;
     width: 50em;
     display: flex;
+
     font-family:'Clash font';
     font-size: large;
     color: rgb(255, 255, 255);
