@@ -6,13 +6,12 @@ function inputValues()
         let gemMineLvl = document.getElementById('gemMineLevel').value;
         let clockTowerLvl = document.getElementById('clockTowerLevel').value;
         let clanGameTier = document.getElementById('clanGameTier').value;
-        let gemBoxFreq = document.getElementById('gemBoxFreq').value;
         let error;
         
-        if(reqdNumGems.length==0)
-            {
-                error = document.getElementById('err0');
-                error.style.visibility = 'visible';
+    if(reqdNumGems.length==0)
+    {
+        error = document.getElementById('err0');
+        error.style.visibility = 'visible';
     }
     else
     {
@@ -23,34 +22,34 @@ function inputValues()
     
     
     if(avlNumGems.length==0)
-        {
-            error = document.getElementById('err1');
-            error.style.visibility = 'visible';
-        }
-        else
-        {
-            error = document.getElementById('err1');
-            error.style.visibility = 'hidden';
-            values[1] = avlNumGems;
-        }
+    {
+        error = document.getElementById('err1');
+        error.style.visibility = 'visible';
+    }
+    else
+    {
+        error = document.getElementById('err1');
+        error.style.visibility = 'hidden';
+        values[1] = avlNumGems;
+    }
+
+    
+    if(gemMineLvl.length==0||Number(gemMineLvl)>10||Number(gemMineLvl)<0)
+    {
+        error = document.getElementById('err2');
+        error.style.visibility = 'visible';
         
-        
-        if(gemMineLvl.length==0||Number(gemMineLvl)>10||Number(gemMineLvl)<0)
-            {
-                error = document.getElementById('err2');
-                error.style.visibility = 'visible';
-                
-            }
-            else
-            {
-                error = document.getElementById('err2');
-                error.style.visibility = 'hidden';
-                values[2]=gemMineLvl;
-            }
-            
-            
-            if(clockTowerLvl.length==0||Number(clockTowerLvl)>10||Number(clockTowerLvl)<0)
-                {
+    }
+    else
+    {
+        error = document.getElementById('err2');
+        error.style.visibility = 'hidden';
+        values[2]=gemMineLvl;
+    }
+    
+    
+    if(clockTowerLvl.length==0||Number(clockTowerLvl)>10||Number(clockTowerLvl)<0)
+    {
         error = document.getElementById('err3');
         error.style.visibility = 'visible';
         
@@ -64,39 +63,21 @@ function inputValues()
     
     
     if(clanGameTier.length==0||Number(clanGameTier)>7||Number(clanGameTier)<0)
-        {
-            error = document.getElementById('err4');
-            error.style.visibility = 'visible';
-            
-        }
-        else
-        {
-            error = document.getElementById('err4');
-            error.style.visibility = 'hidden';
-            values[4]=clanGameTier;
-            
-        }
+    {
+        error = document.getElementById('err4');
+        error.style.visibility = 'visible';
         
-        if(gemBoxFreq.length==0||Number(gemBoxFreq)>3||Number(gemBoxFreq)<0)
-            {
-                error = document.getElementById('err5');
-                error.style.visibility = 'visible';
-                
-            }
-            else
-            {
-                error = document.getElementById('err5');
-                error.style.visibility = 'hidden';
-                values[5]=gemBoxFreq;
-                console.log(values);
-                return values;
-                
-            }
-            
-        }
+    }
+    else
+    {
+        error = document.getElementById('err4');
+        error.style.visibility = 'hidden';
+        values[4]=clanGameTier;
+        console.log(values);
+        return values;
+    }       
+}
     
-        
-        
         
         
 function gemMineAndClockTower(val)
@@ -140,42 +121,20 @@ return cgmProductionPerDay;
 
 
 
-
-
-function gemBox()
+function gemBoxCounter()
 {
-    let gemBoxFreq = values[5];
-    let netGemsPerMonth = Number(gemBoxFreq) *25;
-    return netGemsPerMonth;
-
+    let gemBox = document.getElementById('gemBox');
+    let count =0;
+    
+    gemBox.addEventListener('click', ()=>{
+        count++;
+        document.getElementById('counter').innerHTML=`x${count}`;
+    });
 }
-
-
-
-
-// function clanGames()
-// {
-//     const d = newDate();
-//     let date = d.getDate();
-//     let clanGameTier = values[4];
-//     let clanGameAvailable = false;
-//     if (date>=22 &&date<=28)
-
-//     if (clanGameTier>0 && clanGameTier<=2)
-//     {
-//         gemsPerDay = 20/30;
-//     }
-//     else if(clanGameTier>2&&clanGameTier<6)
-//     {
-//         gemsPerDay = 50/30;
-//     }
-
-// }
 
 
 function obstacles()
 {
-
     let obstacleNetProdPerDay =0;
     let homeBaseObs = document.getElementById('homeBaseObstacleToggle');
     let BuilderBaseObs = document.getElementById('builderBaseObstacleToggle');
@@ -184,7 +143,6 @@ function obstacles()
             {
                 obstacleNetProdPerDay+=6;
             }
-
                             
         if(BuilderBaseObs.checked)
             {
@@ -192,7 +150,6 @@ function obstacles()
             }
 
     return obstacleNetProdPerDay;
-
 }
 
 
@@ -223,20 +180,13 @@ function displayTime(time)
 }
 
 
-
-
 function mainFunction()
 {
     let val = inputValues();
     let reqdTime = 0;
     let reqdGems = val[0];
     let avlGems = val[1];
-
-
-    let resultTag = document.getElementById('timeTaken');
-
-
-
+    let resultTag = document.getElementById('timeTakenText1');
     
     if(reqdGems <= avlGems) 
         {
@@ -245,13 +195,15 @@ function mainFunction()
     else
         {
 
-            
             let netReqdGems = reqdGems - avlGems;
             let NetProductionPerDay = gemMineAndClockTower(val) + obstacles();
             console.log("Net prod per day: "+NetProductionPerDay);
 
-            reqdTime = netReqdGems/NetProductionPerDay;
+
+
+            reqdTime = netReqdGems/NetProductionPerDay;             //everything related to obtaining and displaying time taken.
             reqdTime = parseFloat(reqdTime.toFixed(4));            //to round required time to 4 decimal places.
+
             let result = displayTime(reqdTime);
             resultTag.innerHTML = `Time Taken: ${result[0]} days ${result[1]} hours ${result[2]} minutes ${result[3]} seconds `;
            
@@ -261,4 +213,3 @@ function mainFunction()
 
 
 document.getElementById('calcBtn').addEventListener('click',mainFunction);
-

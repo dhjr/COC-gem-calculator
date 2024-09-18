@@ -7,6 +7,8 @@
 
     <title>COC Gem Calculator</title>
 </head>
+
+
 <body>
     <div class="container">
         <h1 class="title">TIME TO OBTAIN GEMS</h1>
@@ -32,10 +34,6 @@
             <label for="clanGameTier" class="parameter">Average clan game tier</label>
             <input type="number" id ="clanGameTier" min="0" max="7" placeholder="between 0 and 7">
             <span class ='err' id="err4">Invalid Number</span><br>
-
-            <label for="gemBoxFreq" class="parameter">Gem Box frequency per month</label>
-            <input type="number" id ="gemBoxFreq" min="0" max="3" placeholder="between 0 and 3">
-            <span class ='err' id="err5">Invalid Number</span><br>
             
         
 
@@ -68,13 +66,23 @@
         </div>
             
             <button class='parameter' id="calcBtn">Calculate</button>
-        
         </div>
     </div>
 
-    <div>
-        <span id="timeTaken">Time Taken</span>
+    <div class = 'timeTaken' id="timeTakenWithoutGB">
+        <img class= 'gemBoxIcon' id ="crossedGemBox" src="./resource/crossedGemBox.png" alt="Gem Box icon">
+        <p class = 'timeTakenText' id="timeTakenText1">Time Taken</p>
     </div>
+    
+    <div class = 'timeTaken' id="timeTakenWithGb">
+        <div>
+
+            <img class="gemBoxIcon" id ="gemBox" src="./resource/gemBox.png" alt="Gem Box icon">
+            <p id="counter">x0</p>
+        </div>
+        <p class = 'timeTakenText'  id="timeTakenText2">Time Taken</p>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
