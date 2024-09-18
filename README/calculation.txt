@@ -75,3 +75,5 @@ options: 1 , 2 or 3
 avg clan game tier: what tier does the player usually complete upto in clan games(assuming he chooses gems as rewards)
 options: 0 to 7 (0 indicating dont know or dont consider clan games)
 
+assume that the user only selects gem as the reward whenever possible.
+

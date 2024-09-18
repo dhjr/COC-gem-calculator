@@ -9,11 +9,6 @@
     margin: 0px;
 }
 
-p {
-  margin: 0; /* Remove margin */
-  padding: 0; /* Remove padding */
-
-}
 
 body{
     background-image: url(./resource/background.jpg);
