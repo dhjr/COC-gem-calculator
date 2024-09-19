@@ -1,13 +1,14 @@
 function inputValues()
 {
     let values = [];
-    let reqdNumGems = document.getElementById('reqdNumOfGems').value;
-    let avlNumGems= document.getElementById('avlNumOfGems').value;
-    let gemMineLvl = document.getElementById('gemMineLevel').value;
-    let clockTowerLvl = document.getElementById('clockTowerLevel').value;
+    let reqdNumGems = (document.getElementById('reqdNumOfGems').value);
+    let avlNumGems= (document.getElementById('avlNumOfGems').value);
+    let gemMineLvl = (document.getElementById('gemMineLevel').value);
+    let clockTowerLvl = (document.getElementById('clockTowerLevel').value);
     let error;
-        
-    if(reqdNumGems.length==0||reqdNumGems.length>10||Number(reqdNumGems)<0)
+    
+    console.log(reqdNumGems)
+    if(reqdNumGems.length==0 || reqdNumGems.length>10 || Number(reqdNumGems)<0 || Number.isInteger(Number(reqdNumGems))===false)
     {
         error = document.getElementById('err0');
         error.style.visibility = 'visible';
@@ -21,7 +22,7 @@ function inputValues()
     }
     
     
-    if(avlNumGems.length==0||avlNumGems.length>10||Number(avlNumGems)<0)
+    if(avlNumGems.length==0||avlNumGems.length>10||Number(avlNumGems)<0||Number.isInteger(Number(avlNumGems))===false)
     {
         error = document.getElementById('err1');
         error.style.visibility = 'visible';
@@ -35,7 +36,7 @@ function inputValues()
     }
 
     
-    if(gemMineLvl.length==0||Number(gemMineLvl)>10||Number(gemMineLvl)<0)
+    if(gemMineLvl.length==0||Number(gemMineLvl)>10||Number(gemMineLvl)<0||Number.isInteger(Number(gemMineLvl))===false)
     {
         error = document.getElementById('err2');
         error.style.visibility = 'visible';
@@ -50,7 +51,7 @@ function inputValues()
     }
     
     
-    if(clockTowerLvl.length==0||Number(clockTowerLvl)>10||Number(clockTowerLvl)<0)
+    if(clockTowerLvl.length==0||Number(clockTowerLvl)>10||Number(clockTowerLvl)<0||Number.isInteger(Number(clockTowerLvl))===false)
     {
         error = document.getElementById('err3');
         error.style.visibility = 'visible';
