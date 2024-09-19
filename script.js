@@ -7,7 +7,7 @@ function inputValues()
     let clockTowerLvl = document.getElementById('clockTowerLevel').value;
     let error;
         
-    if(reqdNumGems.length==0||reqdNumGems.length>10)
+    if(reqdNumGems.length==0||reqdNumGems.length>10||Number(reqdNumGems)<0)
     {
         error = document.getElementById('err0');
         error.style.visibility = 'visible';
@@ -21,7 +21,7 @@ function inputValues()
     }
     
     
-    if(avlNumGems.length==0||avlNumGems.length>10)
+    if(avlNumGems.length==0||avlNumGems.length>10||Number(avlNumGems)<0)
     {
         error = document.getElementById('err1');
         error.style.visibility = 'visible';
@@ -63,7 +63,6 @@ function inputValues()
         error.style.visibility = 'hidden';
         values[3]=Number(clockTowerLvl);
     }
-    
     return values;
 }
     
@@ -104,7 +103,6 @@ const netTimeGainedPerDay = {0:0,       //Indicated how much actual boost is pro
                 }
 
 let cgmProductionPerDay = (86400+netTimeGainedPerDay[clockTowerLvl])/gemMinePerDayProduction[gemMineLvl];       // total production by the gemMine with clock tower boost once a day
-//console.log("Net gem mine production per day:"+cgmProductionPerDay);
 return cgmProductionPerDay;
 }
 
@@ -113,7 +111,6 @@ return cgmProductionPerDay;
 function gemBoxCounter(values)
 {
     let gemBox = document.getElementById('gemBox');
-    console.log(values);
     let reqdGems = values[0];
     let avlGems = values[1];
     let count =0;
@@ -124,7 +121,6 @@ function gemBoxCounter(values)
     function newTime()
     {
         newAvlGems +=25;
-        console.log(newAvlGems)
 
         if(newAvlGems>=reqdGems)
         {
@@ -143,6 +139,7 @@ function gemBoxCounter(values)
         }
     }
 
+
     gemBox.addEventListener('click',newTime);
 
 }
@@ -154,14 +151,14 @@ function obstacles()
     let BuilderBaseObs = document.getElementById('builderBaseObstacleToggle');
 
     if(homeBaseObs.checked)
-        {
-            obstacleNetProdPerDay+=6;
-        }
+    {
+        obstacleNetProdPerDay+=6;
+    }
                         
     if(BuilderBaseObs.checked)
-        {
-            obstacleNetProdPerDay +=6;
-        }
+    {
+        obstacleNetProdPerDay +=6;
+    }
 
     return obstacleNetProdPerDay;
 }
@@ -228,7 +225,8 @@ function mainFunction()
         document.getElementById('timeTakenText2').innerHTML = 'Time Taken:';
         
         let elements = document.querySelectorAll('.timeTaken');
-        elements.forEach(function(element) {
+        elements.forEach(function(element) 
+        {
             element.style.visibility = 'visible';
         });
 
@@ -244,10 +242,13 @@ function mainFunction()
                 let reqdTime = reqdTimeCalculate(val, reqdGems , avlGems);
                 let result = obtainTime(reqdTime);
                 resultTag.innerHTML =`Time Taken: ${result[0]}d ${result[1]}h ${result[2]}m ${result[3]}s`;
+                document.getElementById('timeTakenWithGb').style.visibility = 'visible';
                 gemBoxCounter(val);
             }
     }
-    else{
+
+    else
+    {
         resultTag.innerHTML = 'Time Taken: ';
     }
 } 
