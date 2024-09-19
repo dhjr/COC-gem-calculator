@@ -221,10 +221,14 @@ function mainFunction()
 {
     let val = inputValues();
     let resultTag = document.getElementById('timeTakenText1');
+
+
+
     if(checkType(val))
     {
-        let reqdGems = Number(val[0]);
-        let avlGems = Number(val[1]);
+        window.scrollBy({ top: 500, behavior: 'smooth' }); // Scroll down by 500 pixels
+        let reqdGems = val[0];
+        let avlGems = val[1];
         document.getElementById('counter').innerHTML=`x0`;
         document.getElementById('timeTakenText2').innerHTML = 'Time Taken:';
         
@@ -232,9 +236,7 @@ function mainFunction()
         elements.forEach(function(element) {
             element.style.visibility = 'visible';
         });
-        // function pageSc
-        // window.scrollBy(0,60); // horizontal and vertical scroll increments
-        // scrolldelay = setTimeout('pageScroll()',100);
+
 
 
         if(reqdGems <= avlGems) 
