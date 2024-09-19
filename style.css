@@ -6,13 +6,12 @@
 
 *
 {
-    margin: 0px;
+    margin: 0rem;
+    padding: 0rem;
 }
 
-
-
 body{
-    background-image: url(./resource/background.jpg);
+    background-image: url(./resource/background-mobile.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -22,17 +21,19 @@ body{
 .container
 {
     margin: auto;
-    margin-top: 2em;
+    padding: 0.25rem;
+    margin-top: 2rem;
     min-width: fit-content;
-    width: 40em;
+    width: 90%;
     height: fit-content;
-    background-color: rgba(255, 255, 255, 0.249);
-    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.349);
+    border-radius: 2rem;
 }
 .title
 {
     text-align: center;
-    padding: 15px;
+    font-size: 1.25rem;
+    margin: 1.25rem;
     font-family:'Clash font';
     color: rgb(255, 224, 22);
 }
@@ -44,11 +45,12 @@ body{
     flex-direction:column ;
     flex-wrap: wrap;
     align-items: stretch;
-    max-width: 70%;
+    max-width: 80%;
 }
 .parameter
 {
     font-family:'Clash font';
+    font-size: 0.75rem;
     color: rgb(255, 255, 255);
     
 }
@@ -70,13 +72,12 @@ body{
     font-family: 'Clash font';
     font-size: medium;
     background-color: rgb(255, 179, 3); 
-    border: 4px solid rgb(134, 96, 0);
-    border-radius: 20px;
+    border: 0.25rem solid rgb(134, 96, 0);
+    border-radius: 1.25rem;
 }
 
 #calcBtn:active
 {
-
   scale: 0.95;
 
 }
@@ -94,6 +95,7 @@ body{
 .switchText
 {
     font-family:'Clash font';
+    font-size: 0.75rem;
     color: rgb(255, 255, 255);
 }
 
@@ -104,7 +106,8 @@ body{
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-}
+    min-width: 15rem;
+  }
 
 #switch2
 {
@@ -120,9 +123,10 @@ body{
 .toggleSwitch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
-    margin: .5em;
+    width: 3.5rem;
+    height: 2rem;
+    margin-bottom: .5rem;
+    margin-left:0.5rem ;
   }
   
   /* Hide default HTML checkbox */
@@ -148,10 +152,10 @@ body{
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 1.5rem;
+  width: 1.5rem;
+  left: 0.2rem;
+  bottom: 0.25rem;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -166,14 +170,14 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(1.625rem);
+  -ms-transform: translateX(1.625rem);
+  transform: translateX(1.625rem);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 2.125rem ;
 }
 
 .slider.round:before {
@@ -184,22 +188,22 @@ input:checked + .slider:before {
 {
   display: block;
   position: relative;
-  left: 3.5em;
-  bottom: 2.5em;
+  left: 3.5rem;
+  bottom: 2.5rem;
 }
 
 .timeTaken
 {
     margin: auto;
+    font-family:'Clash font';
+    font-size: 1rem;
     width: fit-content;
-    max-width: 40em;
+    max-width: 40rem;
     visibility:hidden;
-    height: 5em;
+    height: 5rem;
 
     display: flex;
     flex-direction:column ;
-    font-family:'Clash font';
-    font-size: large;
     color: rgb(255, 255, 255);
     align-items: flex-start;
 }
@@ -207,7 +211,6 @@ input:checked + .slider:before {
 #timeTakenWithoutGB
 {
   width: fit-content;
-  /* max-width: 100vw; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -225,22 +228,26 @@ input:checked + .slider:before {
 
 .gemBoxIcon
 {
-
-  margin: 1em;
-  padding: .25em;
-  width: 3em;
+  margin: 1rem;
+  padding: 0rem;
+  width: 3rem;
 }
 #gemBox:hover
 {
-  border: 1px solid white;
-  border-radius: 10px;
+  border:0.063rem solid white;
+  border-radius: 0.63rem;
   background-color: gray;
   scale: 1.15;
 }
 
+#gemBox:active
+{
+  scale: 0.97;
+}
+
 .timeTakenText
 {
-  margin: 1em;
+  margin-left: 0.75rem;
 }
 
 
