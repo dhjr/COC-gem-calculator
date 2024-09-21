@@ -1,73 +1,91 @@
-function inputValues()
+function inputValues(idOfElm)
 {
-    let values = [];
-    let reqdNumGems = (document.getElementById('reqdNumOfGems').value);
-    let avlNumGems= (document.getElementById('avlNumOfGems').value);
-    let gemMineLvl = (document.getElementById('gemMineLevel').value);
-    let clockTowerLvl = (document.getElementById('clockTowerLevel').value);
+
     let error;
-    
-    console.log(reqdNumGems)
-    if(reqdNumGems.length==0 || reqdNumGems.length>10 || Number(reqdNumGems)<0 || Number.isInteger(Number(reqdNumGems))===false)
+
+    let element = document.getElementById(`${idOfElm}`);
+    let val = element.value;
+
+    if(idOfElm==='reqdNumOfGems')
     {
-        error = document.getElementById('err0');
-        error.style.visibility = 'visible';
-        values[0]=-1;
-    }
-    else
-    {
-        error = document.getElementById('err0');
-        error.style.visibility='hidden'
-        values[0] = Number(reqdNumGems);
-    }
-    
-    
-    if(avlNumGems.length==0||avlNumGems.length>10||Number(avlNumGems)<0||Number.isInteger(Number(avlNumGems))===false)
-    {
-        error = document.getElementById('err1');
-        error.style.visibility = 'visible';
-        values[1]=-1;
-    }
-    else
-    {
-        error = document.getElementById('err1');
-        error.style.visibility = 'hidden';
-        values[1] = Number(avlNumGems);
+
+        if(val.length>10 || Number(val)<0 || Number.isInteger(Number(val))===false)
+            {
+                error = document.getElementById('err0');
+                error.style.visibility = 'visible';
+                return -1;
+            }
+            else
+            {
+                error = document.getElementById('err0');
+                error.style.visibility='hidden'
+                return Number(val);
+            }
+            
     }
 
-    
-    if(gemMineLvl.length==0||Number(gemMineLvl)>10||Number(gemMineLvl)<0||Number.isInteger(Number(gemMineLvl))===false)
+    else if(idOfElm==='avlNumOfGems')
     {
-        error = document.getElementById('err2');
-        error.style.visibility = 'visible';
-        values[2]=-1;
+
         
+        if(val.length>10||Number(val)<0||Number.isInteger(Number(val))===false)
+            {
+                error = document.getElementById('err1');
+                error.style.visibility = 'visible';
+                return -1;
+            }
+            else
+            {
+                error = document.getElementById('err1');
+                error.style.visibility = 'hidden';
+                return Number(val);
+            }
+            
+
     }
-    else
+
+    else if(idOfElm==='gemMineLevel')
     {
-        error = document.getElementById('err2');
-        error.style.visibility = 'hidden';
-        values[2]=Number(gemMineLvl);
+
+        if(Number(val)>10||Number(val)<0||Number.isInteger(Number(val))===false)
+            {
+                error = document.getElementById('err2');
+                error.style.visibility = 'visible';
+                return -1;
+                
+            }
+            else
+            {
+                error = document.getElementById('err2');
+                error.style.visibility = 'hidden';
+                return Number(val);
+            }
+            
     }
-    
-    
-    if(clockTowerLvl.length==0||Number(clockTowerLvl)>10||Number(clockTowerLvl)<0||Number.isInteger(Number(clockTowerLvl))===false)
+    else if(idOfElm==='clockTowerLevel')
     {
-        error = document.getElementById('err3');
-        error.style.visibility = 'visible';
-        values[3]=-1;
+
         
+        if(Number(val)>10||Number(val)<0||Number.isInteger(Number(val))===false)
+            {
+                error = document.getElementById('err3');
+                error.style.visibility = 'visible';
+                return -1;
+                
+            }
+            else
+            {
+                error = document.getElementById('err3');
+                error.style.visibility = 'hidden';
+                return Number(val);
+            }
     }
-    else
-    {
-        error = document.getElementById('err3');
-        error.style.visibility = 'hidden';
-        values[3]=Number(clockTowerLvl);
-    }
-    return values;
 }
+
+
+
     
-        
+
         
 function gemMineAndClockTower(val)
 {
@@ -202,24 +220,26 @@ function obtainTime(time)
 
 function checkType(arr)
 {
-    for(let i=0;i<(arr.length);i++)
+    console.log(arr.length)
+    arr.forEach(elm =>
     {
-        if (arr[i]===-1)
+        if (arr[elm]===-1)
         {
             return false;
         }
     }
-    return true;
+)
+return true;
 }
 
-function mainFunction()
+function mainFunction(val)
 {
-    let val = inputValues();
+
     let resultTag = document.getElementById('timeTakenText1');
 
     if(checkType(val))
     {
-        window.scrollBy({ top: 500, behavior: 'smooth' }); // Scroll down by 500 pixels
+        window.scrollBy({ top: 500, behavior: 'smooth'}); // Scroll down by 500 pixels
         let reqdGems = val[0];
         let avlGems = val[1];
         document.getElementById('counter').innerHTML=`x0`;
@@ -255,5 +275,41 @@ function mainFunction()
 } 
 
 
+const inputs = document.querySelector('.parameters');
+let val =[];
+inputs.addEventListener('input', (event)=>
+{
+    console.log('inputted')
+    if(event.target.classList.contains('inputs'))
+    {
+        let idOfElm = (event.target.id);
+        if(idOfElm==='reqdNumOfGems')
+        {
+            val[0] = inputValues(idOfElm);
+        }
+        else if(idOfElm==='avlNumOfGems')
+        {
+            val[1] = inputValues(idOfElm);
+        }
+  
+        else if(idOfElm ==='gemMineLevel')
+        {
+            val[2] = inputValues(idOfElm)
+        }
+        
+        else if(idOfElm === 'clockTowerLevel')
+        {
+            val[3] = inputValues(idOfElm);
+        }
+        //console.log(val)
+        
+    }
+}
+);
 
-document.getElementById('calcBtn').addEventListener('click',mainFunction);
+document.getElementById('calcBtn').addEventListener('click',function(){
+    console.log(val);
+    mainFunction(val);
+});
+
+
