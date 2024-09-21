@@ -215,20 +215,19 @@ function obtainTime(time)
     remainingTime = seconds;
     seconds = Math.floor(remainingTime);
 
+
     return [days,hours,minutes,seconds];
 }
 
 function checkType(arr)
 {
     console.log(arr.length)
-    arr.forEach(elm =>
+    for (i of arr)
     {
-        if (arr[elm]===-1)
-        {
-            return false;
-        }
+        if(i==-1)
+            return false
     }
-)
+
 return true;
 }
 
@@ -237,7 +236,7 @@ function mainFunction(val)
 
     let resultTag = document.getElementById('timeTakenText1');
 
-    if(checkType(val))
+    if(checkType(val) && val.length===4)
     {
         window.scrollBy({ top: 500, behavior: 'smooth'}); // Scroll down by 500 pixels
         let reqdGems = val[0];
@@ -251,8 +250,6 @@ function mainFunction(val)
             element.style.visibility = 'visible';
         });
 
-
-
         if(reqdGems <= avlGems) 
             {
                 resultTag.innerHTML = ("Time Taken:0 days");   
@@ -262,16 +259,22 @@ function mainFunction(val)
             {
                 let reqdTime = reqdTimeCalculate(val, reqdGems , avlGems);
                 let result = obtainTime(reqdTime);
-                resultTag.innerHTML =`Time Taken: ${result[0]}d ${result[1]}h ${result[2]}m ${result[3]}s`;
+
+                if((result[0] === Infinity) || (result[0] ===NaN))
+                {
+                    resultTag.innerHTML =`Time Taken: Infinite d`; 
+                }
+                else
+                {
+                    resultTag.innerHTML =`Time Taken: ${result[0]}d ${result[1]}h ${result[2]}m ${result[3]}s`;
+                }
                 document.getElementById('timeTakenWithGb').style.visibility = 'visible';
                 gemBoxCounter(val);
+
+
             }
     }
 
-    else
-    {
-        resultTag.innerHTML = 'Time Taken: ';
-    }
 } 
 
 
