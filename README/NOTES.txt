@@ -1,17 +1,17 @@
 NOTE *as of 19/09/2024
 
-Obtaining gems through clan games is not considered in this calculation.If you are a person who completes clan games every month and chooses gems as rewards, the time requirement will drop significantly.
+Gems earned from clan games are not included in this calculation. If you regularly complete clan games each month and choose gems as rewards, you'll need significantly less time."
 
 Higher the required gems,more accurate is the prediction.
 
 Time requirement for obstacle is based on the following assumptions
-1. 1 obstacle is produced every 8 hours , so 3 a day
+1. A new obstacle is produced every 8 hours to a total of 3 per day per base
 2. each obstacle provides an average of 2gems.
 
-In reality the gems obtained from each obstacle follows a certain sequence repeatedly
-which is: 6, 0, 4, 5, 1, 3, 2, 0, 0, 5, 1, 0, 3, 4, 0, 0, 5, 0, 1, 0 
-On average, each obstacle cleared has 2 Gems.
+In reality The gems from each obstacle follow a repeating sequence: 6, 0, 4, 5, 1, 3, 2, 0, 0, 5, 1, 0, 3, 4, 0, 0, 5, 0, 1, 0. On average, each cleared obstacle yields 2 gems.
 
-The time in seconds and minutes isn't accurate as the time in days and hours.
 
-Modeled based on data available from the web.
+"The time in seconds and minutes is less accurate than the time in days and hours."
+
+
+Built based on data available from the web.
